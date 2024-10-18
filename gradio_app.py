@@ -22,7 +22,7 @@ else:
     device = "cpu"
 
 model = TSR.from_pretrained(
-    "stabilityai/TripoSR",
+    "/data/AI_DATA/share/modelscope/hub/VAST-AI-Research/TripoSR",
     config_name="config.yaml",
     weight_name="model.ckpt",
 )

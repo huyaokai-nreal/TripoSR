@@ -3,8 +3,8 @@ from dataclasses import dataclass
 import torch
 import torch.nn as nn
 from einops import rearrange
-from huggingface_hub import hf_hub_download
 from transformers.models.vit.modeling_vit import ViTModel
+from modelscope.hub.file_download import model_file_download
 
 from ...utils import BaseModule
 
@@ -12,7 +12,7 @@ from ...utils import BaseModule
 class DINOSingleImageTokenizer(BaseModule):
     @dataclass
     class Config(BaseModule.Config):
-        pretrained_model_name_or_path: str = "facebook/dino-vitb16"
+        pretrained_model_name_or_path: str = "AI-ModelScope/dino-vitb16"
         enable_gradient_checkpointing: bool = False
 
     cfg: Config
@@ -20,9 +20,9 @@ class DINOSingleImageTokenizer(BaseModule):
     def configure(self) -> None:
         self.model: ViTModel = ViTModel(
             ViTModel.config_class.from_pretrained(
-                hf_hub_download(
-                    repo_id=self.cfg.pretrained_model_name_or_path,
-                    filename="config.json",
+                model_file_download(
+                    model_id=self.cfg.pretrained_model_name_or_path,
+                    file_path="config.json"
                 )
             )
         )

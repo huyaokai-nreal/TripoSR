@@ -5,7 +5,6 @@ import torch
 import torch.nn as nn
 from torchmcubes import marching_cubes
 
-
 class IsosurfaceHelper(nn.Module):
     points_range: Tuple[float, float] = (0, 1)
 

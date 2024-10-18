@@ -1,7 +1,7 @@
 omegaconf==2.3.0
 Pillow==10.1.0
 einops==0.7.0
-git+https://github.com/tatsy/torchmcubes.git
+git+https://github.com/tatsy/torchmcubes.git@3aef8afa5f21b113afc4f4ea148baee850cbd472
 transformers==4.35.0
 trimesh==4.0.5
 rembg
@@ -9,4 +9,6 @@ huggingface-hub
 imageio[ffmpeg]
 gradio
 xatlas==0.0.9
+numpy==1.23.5
 moderngl==5.10.0
+modelscope
