@@ -12,3 +12,4 @@ xatlas==0.0.9
 numpy==1.23.5
 moderngl==5.10.0
 modelscope
+fastapi
