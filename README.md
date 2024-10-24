@@ -47,6 +47,12 @@ For detailed usage of this script, use `python run.py --help`.
 python gradio_app.py
 ```
 
+### Launch Server
+
+```sh
+CUDA_VISIBLE_DEVICES=$GPU_ID uvicorn server:app --reload --host 0.0.0.0 --port 8000
+```
+
 ## Troubleshooting
 > AttributeError: module 'torchmcubes_module' has no attribute 'mcubes_cuda'
 
