@@ -18,9 +18,8 @@ def run_example(image_pil):
 
 with gr.Blocks(title="TTSR") as interface:
     with gr.Row():
-        common_negtivate_prompt = "worst quality, normal quality, low quality, low res, blurry, text, watermark, logo, banner, extra digits, cropped, jpeg artifacts, signature, username, error, sketch ,duplicate, ugly, monochrome, horror, geometry, mutation, disgusting"
-        prompt_input = gr.Textbox(label="image prompt", value="a cartoonish teddy bear picture with a white background, enhanced with 3D effects to give it a playful, three-dimensional appearance. The focus should be on capturing the essence of a cuddly teddy bear in a vivid and imaginative way, suitable for a children's book illustration or a fun, whimsical wallpaper")
-        neg_prompt_input = gr.Textbox(label="negtivate prompt", value=common_negtivate_prompt)
+        prompt_input = gr.Textbox(label="image prompt", value="a  teddy bear")
+        neg_prompt_input = gr.Textbox(label="negtivate prompt")
         guidance_scale = gr.Number(label="guidance scale", value=1.0, minimum=0, maximum=10)
         num_steps = gr.Number(label="inference steps", value=10, minimum=4, maximum=20)
         sd_button = gr.Button("生成图像")

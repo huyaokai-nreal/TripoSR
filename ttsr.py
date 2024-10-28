@@ -16,6 +16,8 @@ class TTSR:
         self.tsr_model_path = "/data/AI_DATA/share/modelscope/hub/VAST-AI-Research/TripoSR"
         self.sdxl_model_path = "/data/AI_DATA/share/modelscope/hub/AI-ModelScope/stable-diffusion-xl-base-1___0"
         self.adapter_id = "latent-consistency/lcm-lora-sdxl"
+        self.common_prompt = "3D cartoon" #, white background"
+        self.common_negative_prompt = "worst quality, normal quality, low quality, low res, blurry, text, watermark, logo, banner, extra digits, cropped, jpeg artifacts, signature, username, error, sketch ,duplicate, ugly, monochrome, horror, geometry, mutation, disgusting"
 
     def init_model(self):
         self.tsr_model = TSR.from_pretrained(self.tsr_model_path, config_name="config.yaml", weight_name="model.ckpt")
@@ -49,7 +51,10 @@ class TTSR:
         return image
 
     def generate_image(self, prompt, negtivate_prompt, guidance_scale=1, num_inference_steps=10):
-        image = self.sdxl_model(prompt=prompt, negtivate_prompt = negtivate_prompt,  num_inference_steps=num_inference_steps, guidance_scale=guidance_scale, height=1024, width=1024, generator=torch.Generator("cpu").manual_seed(0)).images[0]
+        prompt = f"{prompt}, {self.common_prompt}"
+        negtivate_prompt = f"{negtivate_prompt}, {self.common_negative_prompt}"
+        #generator=torch.Generator("cpu").manual_seed(0)
+        image = self.sdxl_model(prompt=prompt, negtivate_prompt = negtivate_prompt,  num_inference_steps=num_inference_steps, guidance_scale=guidance_scale, height=1024, width=1024).images[0]
         numpy_array = np.array(image)
         image = cv2.cvtColor(numpy_array, cv2.COLOR_RGB2RGBA)
         return image
