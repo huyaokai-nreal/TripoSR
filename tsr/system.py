@@ -66,7 +66,7 @@ class TSR(BaseModule):
         cfg = OmegaConf.load(config_path)
         OmegaConf.resolve(cfg)
         model = cls(cfg)
-        ckpt = torch.load(weight_path, map_location="cpu")
+        ckpt = torch.load(weight_path, map_location="cpu",weights_only=True)
         model.load_state_dict(ckpt)
         return model
 

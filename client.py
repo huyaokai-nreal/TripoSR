@@ -1,9 +1,9 @@
 import requests
 import base64
 
-url = "http://0.0.0.0:8000/text-to-3d/"
+url = "http://10.2.6.25:8000/text-to-3d/"
 data = {
-    "prompt": "a cartoonish teddy bear picture with a white background",
+    "prompt": "一个red and big 苹果",
     "negative_prompt": "ugly, deformed",
     "guidance_scale": 1.0,
     "num_inference_steps": 10,

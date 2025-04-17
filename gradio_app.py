@@ -22,6 +22,7 @@ with gr.Blocks(title="TTSR") as interface:
         neg_prompt_input = gr.Textbox(label="negtivate prompt")
         guidance_scale = gr.Number(label="guidance scale", value=1.0, minimum=0, maximum=10)
         num_steps = gr.Number(label="inference steps", value=10, minimum=4, maximum=20)
+        english_prompt = gr.Textbox(label="translated English prompt")
         sd_button = gr.Button("生成图像")
     with gr.Row(variant="panel"):
         with gr.Column():
@@ -92,7 +93,7 @@ with gr.Blocks(title="TTSR") as interface:
             label="Examples",
             examples_per_page=20,
         )
-    sd_button.click(ttsr_model.generate_image, [prompt_input, neg_prompt_input,  guidance_scale, num_steps], input_image)
+    sd_button.click(ttsr_model.generate_image, [prompt_input, neg_prompt_input,  guidance_scale, num_steps], [input_image,english_prompt])
     submit.click(fn=check_input_image, inputs=[input_image]).success(
         fn=ttsr_model.preprocess,
         inputs=[input_image, do_remove_background, foreground_ratio],
